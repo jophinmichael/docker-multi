@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before-install:
+  - docker build -t michjop/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run michjop/react-test npm test -- --coverage
+
+after-success:
+  - docker build -t michjop/multi-client ./client
+  - docker build -t michjop/multi-nginx ./nginx
+  - docker build -t michjop/multi-server ./server
+  - docker build -t michjop/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push michjop/multi-client
+  - docker push michjop/multi-nginx
+  - docker push michjop/multi-server
+  - docker push michjop/multi-worker
