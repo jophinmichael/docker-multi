@@ -2,13 +2,13 @@ sudo: required
 services:
   - docker
 
-before-install:
+before_install:
   - docker build -t michjop/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run michjop/react-test npm test -- --coverage
 
-after-success:
+after_success:
   - docker build -t michjop/multi-client ./client
   - docker build -t michjop/multi-nginx ./nginx
   - docker build -t michjop/multi-server ./server
