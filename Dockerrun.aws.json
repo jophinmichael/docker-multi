@@ -1,0 +1,34 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "michjop/multi-client",
+            "hostName": "client",
+            "essential": "false"
+        },
+        {
+            "name": "server",
+            "image": "michjop/multi-server",
+            "hostName": "api",
+            "essential": "false"
+        },
+        {
+            "name": "worker",
+            "image": "michjop/multi-worker",
+            "essential": "false"
+        },
+        {
+            "name": "nginx",
+            "image": "michjop/multi-nginx",
+            "essential": "true",
+            "PortMapping": [
+                {
+                    "ContainerPort" : "80",
+                    "HostPort" : "80"
+                }
+            ],
+            "links": ["client", "server"]
+        }
+    ]
+}
