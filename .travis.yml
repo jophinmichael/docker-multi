@@ -20,7 +20,7 @@ after_success:
   - docker push michjop/multi-worker
 
 deploy:
-  provder: elasticbeanstalk
+  provider: elasticbeanstalk
   region: ap-south-1
   app: multi-docker
   env: MultiDocker-env
