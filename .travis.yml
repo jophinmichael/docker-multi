@@ -18,3 +18,17 @@ after_success:
   - docker push michjop/multi-nginx
   - docker push michjop/multi-server
   - docker push michjop/multi-worker
+
+deploy:
+  provder: elasticbeanstalk
+  region: ap-south-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-south-1-462135668015
+  bucket_path: docker_multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY 
+
