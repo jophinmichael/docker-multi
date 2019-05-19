@@ -9,7 +9,7 @@
             "memory": 128
         },
         {
-            "name": "server",
+            "name": "api",
             "image": "michjop/multi-server",
             "hostName": "api",
             "essential": "false",
@@ -31,7 +31,7 @@
                     "containerPort" : "80"
                 }
             ],
-            "links": ["client", "server"],
+            "links": ["client", "api"],
             "memory": 128
         }
     ]
