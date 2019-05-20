@@ -22,8 +22,8 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: ap-south-1
-  app: multi-docker
-  env: MultiDocker-env-1
+  app: multi-docker-re1
+  env:  MultiDockerRe1-env
   bucket_name: elasticbeanstalk-ap-south-1-462135668015
   bucket_path: docker_multi
   on:
